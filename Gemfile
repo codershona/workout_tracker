@@ -62,10 +62,28 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
+
 gem 'bulma-rails'
+
+gem 'simple_form'
+
 gem 'sidekiq'
+
+gem 'apartment'
+
+# gem 'webpacker', '~> 3.5'
+
+gem 'webpacker', '~> 4.2', '>= 4.2.2'
+
+# gem 'webpacker', git: 'https://github.com/rails/webpacker.git'
+
+
 group :development, :test do
   gem 'better_errors'
+
   gem 'guard'
+
   gem 'guard-livereload'
+
+  
 end
