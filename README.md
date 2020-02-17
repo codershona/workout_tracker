@@ -27,6 +27,6 @@
 
      * Next NOTES :
 
-       - 
+       - bundle exec rails generate apartment:install ;
        - 
 ```
