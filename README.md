@@ -28,5 +28,7 @@
      * Next NOTES :
 
        - bundle exec rails generate apartment:install ;
+       - rails g migration add_subdomain_to_users subdomain:string ;
+       - rails db:migrate ;
        - 
 ```
