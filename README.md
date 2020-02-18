@@ -30,5 +30,15 @@
        - bundle exec rails generate apartment:install ;
        - rails g migration add_subdomain_to_users subdomain:string ;
        - rails db:migrate ;
+       
+      * Setuping SUBDOMAIN :
+
+       - rails g migration reindex_users_by_email_and_subdomain ;
+       - rails db:migrate ;
+       - After setuping subdomain you can delete localhosthost:3000/ and type http://lvh.me:3000/ to access your app, now you can access in http://lvh.me:3000/ or, localhost:3000/.
+
+       - rails g scaffold Workout title:string date:datetime  ;
+       - rails db:migrate ;
+       - rails c (user = User.all;) ;
        - 
 ```
