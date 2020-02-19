@@ -40,5 +40,8 @@
        - rails g scaffold Workout title:string date:datetime  ;
        - rails db:migrate ;
        - rails c (user = User.all;) ;
-       - 
+
+       * If you see you this type of errors, ActiveRecord::ConnectionNotEstablished - No connection pool with 'primary' found.: - (go to puma.rb and delte 5 and write 1.)
+
+           - 
 ```
