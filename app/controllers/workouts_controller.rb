@@ -16,7 +16,7 @@ class WorkoutsController < ApplicationController
   def new
     @workout = Workout.new
 
-    @work.exercises.build
+    @workout.exercises.build
 
     @workout.user_id = current_user.id
 

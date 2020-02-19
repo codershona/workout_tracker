@@ -50,5 +50,7 @@
 
     * Configuring VueJs and Views :
         - bundle exec rails webpacker:install:vue ;
+        - ./bin/webpack-dev-server; 
+        - if errors shows run this, ./bin/webpack ;
         - 
 ```
