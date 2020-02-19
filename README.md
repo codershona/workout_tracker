@@ -47,5 +47,8 @@
            - rails db:migrate ;
            - rails g scaffold Exercise name:string weight:string workout:references ;
            - rails db:migrate ;
-           - 
+
+    * Configuring VueJs and Views :
+        - bundle exec rails webpacker:install:vue ;
+        - 
 ```
