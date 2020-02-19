@@ -44,6 +44,8 @@
           <div class="navbar-item">
             <div class="field is-grouped">
             <% if user_signed_in? %>
+            
+            <%= link_to "WORKOUTS", new_workout_path, class:"navbar-item button is-primary" %>
 
               <div class="navbar-item has-dropdown is-hoverable">
                 <%= link_to 'ACCOUNT', edit_user_registration_path, class: "navbar-link" %>

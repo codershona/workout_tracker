@@ -52,5 +52,7 @@
         - bundle exec rails webpacker:install:vue ;
         - ./bin/webpack-dev-server; 
         - if errors shows run this, ./bin/webpack ;
-        - 
+
+        (NOTES: If you having any issues with past databases , run rails db:reset it will solved and remove all old databases.)
+        
 ```
