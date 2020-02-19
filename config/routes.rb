@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
 
   
+  resources :exercises
     class Subdomain
 
     def self.matches?(request)

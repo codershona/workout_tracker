@@ -43,5 +43,9 @@
 
        * If you see you this type of errors, ActiveRecord::ConnectionNotEstablished - No connection pool with 'primary' found.: - (go to puma.rb and delte 5 and write 1.)
 
+           - rails g migration add_user_id_to_workouts user_id:integer ;
+           - rails db:migrate ;
+           - rails g scaffold Exercise name:string weight:string workout:references ;
+           - rails db:migrate ;
            - 
 ```

@@ -1,30 +1,36 @@
 class WorkoutsController < ApplicationController
   before_action :set_workout, only: [:show, :edit, :update, :destroy]
 
-  # GET /workouts
-  # GET /workouts.json
+  before_action :authenticate_user! 
+
+
   def index
     @workouts = Workout.all
   end
 
-  # GET /workouts/1
-  # GET /workouts/1.json
+ 
   def show
   end
 
-  # GET /workouts/new
+
   def new
     @workout = Workout.new
+
+    @work.exercises.build
+
+    @workout.user_id = current_user.id
+
   end
 
-  # GET /workouts/1/edit
+ 
   def edit
   end
 
-  # POST /workouts
-  # POST /workouts.json
+
   def create
-    @workout = Workout.new(workout_params)
+    # @workout = Workout.new(workout_params)
+
+     @workout = current_user.workouts.build(workout_params)
 
     respond_to do |format|
       if @workout.save
@@ -37,8 +43,7 @@ class WorkoutsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /workouts/1
-  # PATCH/PUT /workouts/1.json
+
   def update
     respond_to do |format|
       if @workout.update(workout_params)
@@ -51,8 +56,7 @@ class WorkoutsController < ApplicationController
     end
   end
 
-  # DELETE /workouts/1
-  # DELETE /workouts/1.json
+
   def destroy
     @workout.destroy
     respond_to do |format|
@@ -62,13 +66,13 @@ class WorkoutsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
+
     def set_workout
       @workout = Workout.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
+
     def workout_params
-      params.require(:workout).permit(:title, :date)
+      params.require(:workout).permit(:title, :date, exercises_attributes: [:id, :_destroy, :name, :sets, :weight])
     end
 end
