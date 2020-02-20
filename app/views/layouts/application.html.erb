@@ -44,7 +44,12 @@
           <div class="navbar-item">
             <div class="field is-grouped">
             <% if user_signed_in? %>
-            
+
+                   <p class="control">
+              <%= link_to "DASHBORD", workouts_path, class:"navbar-item button is-warning" %>
+            </p>
+
+
             <%= link_to "WORKOUTS", new_workout_path, class:"navbar-item button is-primary" %>
 
               <div class="navbar-item has-dropdown is-hoverable">
