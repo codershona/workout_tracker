@@ -1,17 +1,77 @@
-/* eslint no-console:0 */
-// This file is automatically compiled by Webpack, along with any other files
-// present in this directory. You're encouraged to place your actual application logic in
-// a relevant structure within app/javascript and only use these pack files to reference
-// that code so it'll be compiled.
-//
-// To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
-// layout file, like app/views/layouts/application.html.erb
+// app/javascript/application.js
+import Vue from 'vue/dist/vue.esm'
+import VueResource from 'vue-resource'
 
+Vue.use(VueResource)
 
-// Uncomment to copy all static images under ../images to the output folder and reference
-// them with the image_pack_tag helper in views (e.g <%= image_pack_tag 'rails.png' %>)
-// or the `imagePath` JavaScript helper below.
-//
-// const images = require.context('../images', true)
-// const imagePath = (name) => images(name, true)
+document.addEventListener('turbolinks:load', () => {
+  Vue.http.headers.common['X-CSRF-Token'] = document.querySelector('meta[name="csrf-token"]').getAttribute('content')
 
+  var element = document.getElementById("workout-form")
+
+  if (element != null) {
+
+    var id = element.dataset.id
+    var workout = JSON.parse(element.dataset.workout)
+    var exercises_attributes = JSON.parse(element.dataset.exercisesAttributes)
+    exercises_attributes.forEach(function(exercise) { exercise._destroy = null })
+    workout.exercises_attributes = exercises_attributes
+
+    var app = new Vue({
+      el: element,
+      data: function() {
+        return { id: id, workout: workout }
+      },
+      methods: {
+        addExercise: function() {
+          this.workout.exercises_attributes.push({
+            id: null,
+            name: "",
+            sets: "",
+            weight: "",
+            _destroy: null
+          })
+        },
+
+        removeExercise: function(index) {
+          var exercise = this.workout.exercises_attributes[index]
+
+          if (exercise.id == null) {
+            this.workout.exercises_attributes.splice(index, 1)
+          } else {
+            this.workout.exercises_attributes[index]._destroy = "1"
+          }
+        },
+
+        undoRemove: function(index) {
+          this.workout.exercises_attributes[index]._destroy = null
+        },
+
+        saveWorkout: function() {
+          // Create a new workout
+          if (this.id == null) {
+            this.$http.post('/workouts', { workout: this.workout }).then(response => {
+              Turbolinks.visit(`/workouts/${response.body.id}`)
+            }, response => {
+              console.log(response)
+            })
+
+          // Edit an existing workout
+          } else {
+            this.$http.put(`/workouts/${this.id}`, { workout: this.workout }).then(response => {
+              Turbolinks.visit(`/workouts/${response.body.id}`)
+            }, response => {
+              console.log(response)
+            })
+          }
+        },
+
+        existingWorkout: function() {
+          return this.workout.id != null
+        }
+
+      }
+    })
+
+  }
+})
