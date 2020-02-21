@@ -60,11 +60,21 @@
                 </div>
               </div>
             <% else %>
+
+
+            <% if has_subdomain || verify_subdomain_presence %>
+
+              <p class="control">
+                <%= link_to "LOG IN", new_user_session_path, class:"navbar-item button is-link" %>
+
+              </p>
+
+            <% end %>
+
             <p class="control">
-              <%= link_to "LOG IN", new_user_session_path, class:"navbar-item button is-success" %>
-            </p>
-            <p class="control">
-              <%= link_to "SIGN UP", new_user_registration_path, class:"navbar-item button is-link"%>
+
+              <%= link_to "SIGN UP", new_user_registration_path, class:"navbar-item button is-success"%>
+
             </p>
             <% end %>
 
@@ -73,6 +83,9 @@
       </div>
     </div>
   </nav>
+
+
+   <%= yield :hero %>
 
   <section class="section">
     <div class="container">
