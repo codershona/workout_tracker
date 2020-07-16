@@ -5,10 +5,6 @@
 #### Project can be found here.
 
 
-#### Builded by FalguniIslam (Software developer)
-
-
-
 * NOTES :
 ```
     - cd kickoff ;
